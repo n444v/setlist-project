@@ -43,6 +43,8 @@ header {
   width: 100%;
   position: fixed;
   top: 0;
+  right: 0;
+  left: 0;
   background-color: #1f1f1f;
   /* text-align: center; */ 
 }
@@ -92,6 +94,64 @@ a{
     color: white;
 }
 
+/* CHECKLIST NAVIGATION */
+
+nav {
+  position: fixed;
+  /* right: -200px; */
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.33);
+  width: 100%;
+  height: 20%;
+  transition: top .2s, opacity .5s;
+  opacity: 0;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  text-align: center;
+  font-size: 1.2em;
+  line-height: 1.4em;
+}
 
 
+#open-menu:checked ~ nav { /* WHEN CHECKBOX IS CHECKED IT WILL STYLE/TRIGGER ELEMENT
+  "~" SIBLING SELECTOR-- ONLY YOUNGER SIBLINGS (SAME PARENT, SAME INDENTATION LEVEL, ANYWHERE BELOW ELEMENT IN HTML)
+  "+" ADJACENT SELECTOR -- MUST BE RIGHT BELOW ELEMENT in HTML) */
 
+  /* when checkbox is checked, change nav element */
+
+  right: 0;
+  opacity: 1;
+}
+
+
+#open-menu {
+  display: none;
+}
+
+nav label {
+  font-size: 1.5rem;
+  /* margin-left: 90%; */
+}
+
+#blur-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* "none" will let links or whatever behind be clickable - you can go through the current element */
+  pointer-events: none;
+  opacity: 0;
+  transition: .3s;
+}
+
+#open-menu:checked ~ #blur-overlay {
+  opacity: 1;
+  /* add filter behind element */
+  backdrop-filter: blur(1px);
+  /* "all" will stop on that current layer, nothing behind will be clickable */
+  pointer-events: all;
+}
